@@ -2,7 +2,8 @@ const express = require('express'),
 app = express(),
 flash = require('express-flash'),
 session = require('express-session'),
-cookieParser = require('cookie-parser');
+cookieParser = require('cookie-parser'),
+validator = require('validator');
 
 
 // configure ejs as view engine
@@ -56,8 +57,8 @@ app.post("/form", (req, res) => {
   let nameErr;
   let pointsErr;
 
-  if(email == undefined || email == ""){
-    emailErr = "E-mail cannot be empty.";
+  if( validator.isEmail(email) == true){
+    emailErr = "There is an email (: by Validator.";
 
   }
 
